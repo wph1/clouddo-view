@@ -13,14 +13,7 @@ import '@/assets/css/font-awesome.min.css'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  template: '<App/>',
-  components: {App}
-})
+
 
 /**权限指令**/
 Vue.directive('has', {
@@ -30,6 +23,7 @@ Vue.directive('has', {
     }
   }
 });
+
 //权限检查方法
 Vue.prototype.$_has = function(value) {
   let isExist=false;
@@ -39,11 +33,23 @@ Vue.prototype.$_has = function(value) {
   }
   let buttonperms=JSON.parse(buttonpermsStr);
   for(let i=0;i<buttonperms.length;i++){
-    if(buttonperms[i].perms.indexOf(value)>-1){
+    if(buttonperms[i].indexOf(value)>-1){
       isExist=true;
       break;
     }
   }
   return isExist;
 };
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  store,
+  template: '<App/>',
+  components: {App}
+})
+
+
+
 
